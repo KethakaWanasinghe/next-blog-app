@@ -1,6 +1,6 @@
 'use client'
 import Blogtableitem from '@/Components/AdminComponents/Blogtableitem'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
@@ -9,8 +9,8 @@ const page = () => {
   const [blogs,setBlogs] = useState([]);
 
   const fetchBlogs = async () =>{
-    const response = await axios.get("/api/blog")
-    setBlogs(response.data.blogs)
+    const response = await axios.get("/api/blog");
+    setBlogs(response.data.blogs);
   }
 
   const deleteBlog = async (mongoId) =>{
@@ -25,6 +25,8 @@ const page = () => {
 
   useEffect(()=>{
     fetchBlogs()
+    console.log(blogs);
+
   },[])
 
   return (
