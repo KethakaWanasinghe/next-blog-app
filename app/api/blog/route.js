@@ -1,3 +1,4 @@
+
 import { ConnectDB } from "@/lib/config/db"
 import BlogModel from "@/lib/models/BlogModel";
 import { log } from "console";
@@ -19,14 +20,13 @@ export async function GET(request){
     const blogId = request.nextUrl.searchParams.get("id");
     if (blogId){
         const blog = await BlogModel.findById(blogId);
-        return NextResponse.json({blog})
+        return NextResponse.json(blog)
     }
     else{
         const blogs = await BlogModel.find({});
         return NextResponse.json({blogs})
     }
     
-    return NextResponse.json({msg:"API Working"})
 }
 
 export async function POST(request) {

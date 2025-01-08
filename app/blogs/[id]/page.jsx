@@ -1,86 +1,112 @@
 "use client";
 
-import { assets, blog_data } from "@/Assets/assets";
+import { assets } from "@/Assets/assets";
 import Footer from "@/Components/Footer";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { use } from "react"; // Import use from React for unwrapping promises
+import React, { useEffect, useState, use } from "react";
 
 const Page = ({ params }) => {
-
-  const unwrappedParams = use(params); // Use React's `use()` to resolve the params Promise
+  const resolvedParams = use(params); // Resolve the params promise
+  const { id } = resolvedParams; // Destructure the id from resolvedParams
   const [data, setData] = useState(null);
+  const [error, setError] = useState(null); // Track errors
 
   const fetchBlogData = async () => {
-    const response = await axios.get('/api/blog', {
-      params: {
-        id: params.id,
-      },
-    });
-    setData(response.data);
+    try {
+      const response = await axios.get('/api/blog', { params: { id } });
+      console.log("API Response:", response.data);
+      setData(response.data);
+    } catch (err) {
+      console.error("Failed to fetch blog data:", err);
+      setError("Failed to load blog content.");
+    }
   };
 
   useEffect(() => {
-    fetchBlogData();
-  }, [unwrappedParams.id]);
+    if (id) {
+      fetchBlogData();
+    }
+  }, [id]);
 
-  return ( data ? 
-    <>
-      <div className="bg-gray-200 py-5 px-5 md:px-12 lg:px-28">
-        <div className="flex justify-between items-center">
-          <Link href="/">
+  if (error) {
+    return (
+      <div className="text-center mt-10 text-red-500">
+        {error}
+        <Footer />
+      </div>
+    );
+  }
+
+  return (
+    data ? (
+      <>
+        <div className="bg-gray-200 py-5 px-5 md:px-12 lg:px-28">
+          <div className="flex justify-between items-center">
+            <Link href="/">
+              <Image
+                src={assets.logo}
+                width={180}
+                alt="Blogger Logo"
+                className="w-[130px] sm:w-auto"
+              />
+            </Link>
+            <button className="flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000]">
+              Get Started <Image src={assets.arrow} alt="arrow" />
+            </button>
+          </div>
+          <div className="text-center my-24">
+            <h1 className="text-2xl sm:text-5xl font-semibold max-w-[700px] mx-auto">
+              {data.title}
+            </h1>
+            {data.authorImg && (
+              <Image
+                className="mx-auto mt-6 border border-white rounded-full"
+                src={data.authorImg}
+                width={60}
+                height={60}
+                alt={data.author || "Author"}
+              />
+            )}
+            <p className="mt-1 pb-2 text-lg max-w-[740px] mx-auto">
+              {data.author}
+            </p>
+          </div>
+        </div>
+        <div className="mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10">
+          {data.image && (
             <Image
-              src={assets.logo}
-              width={180}
-              alt=""
-              className="w-[130px] sm:w-auto"
+              className="border-4 border-white"
+              src={data.image}
+              width={1280}
+              height={720}
+              alt="Blog image"
             />
-          </Link>
-          <button className="flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000]">
-            Get Started <Image src={assets.arrow} alt="arrow" />
-          </button>
+          )}
+          <div
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: data.description }}
+          ></div>
+          <div className="mt-24">
+            <p className="text-black font-semibold my-4">
+              Share this article on social media
+            </p>
+            <div className="flex">
+              <Image src={assets.facebook_icon} width={50} alt="facebook" />
+              <Image src={assets.twitter_icon} width={50} alt="twitter" />
+              <Image src={assets.googleplus_icon} width={50} alt="google" />
+            </div>
+          </div>
         </div>
-        <div className="text-center my-24">
-          <h1 className="text-2xl sm:text-5xl font-semibold max-w-[700px] mx-auto">
-            {data.title}
-          </h1>
-          <Image
-            className="mx-auto mt-6 border border-white rounded-full"
-            src={data.author_Img}
-            width={60}
-            height={60}
-            alt=""
-          />
-          <p className="mt-1 pb-2 text-lg max-w-[740px] mx-auto ">
-            {data.author}
-          </p>
-        </div>
+        <Footer />
+      </>
+    ) : (
+      <div className="text-center mt-10">
+        <p>Loading...</p>
+        <Footer />
       </div>
-      <div className="mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10">
-        <Image
-          className="border-4 border-white"
-          src={data.image}
-          width={1280}
-          height={720}
-          alt=""
-        />
-        <h1 className="my-8 text-[18px] font-semibold">Intro</h1>
-        <p>{data.description}</p>
-        <h3 className="my-5 text-[18px] font-semibold">Step 1 - Reflection</h3>
-        <p className="my-3">Learn How To Build A Full Stack Blog Website Using Next JS And MongoDB | Create A Full Stack Blog App / News website using Next JS | Next JS Project tutorial step by step 2024</p>
-        <p className="my-3">Learn How To Build A Full Stack Blog Website Using Next JS And MongoDB | Create A Full Stack Blog App / News website using Next JS | Next JS Project tutorial step by step 2024</p>
-        <h3 className="my-5 text-[18px] font-semibold">Step 1 - Reflection</h3>
-        <p className="my-3">Learn How To Build A Full Stack Blog Website Using Next JS And MongoDB | Create A Full Stack Blog App / News website using Next JS | Next JS Project tutorial step by step 2024</p>
-        <p className="my-3">Learn How To Build A Full Stack Blog Website Using Next JS And MongoDB | Create A Full Stack Blog App / News website using Next JS | Next JS Project tutorial step by step 2024</p>
-        <h3 className="my-5 text-[18px] font-semibold">Step 1 - Reflection</h3>
-        <p className="my-3">Learn How To Build A Full Stack Blog Website Using Next JS And MongoDB | Create A Full Stack Blog App / News website using Next JS | Next JS Project tutorial step by step 2024</p>
-        <p className="my-3">Learn How To Build A Full Stack Blog Website Using Next JS And MongoDB | Create A Full Stack Blog App / News website using Next JS | Next JS Project tutorial step by step 2024</p>
-        
-      </div>
-      <Footer/>
-    </>:<></> 
+    )
   );
 };
 

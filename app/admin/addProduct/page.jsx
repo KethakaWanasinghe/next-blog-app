@@ -5,7 +5,7 @@ import Image from 'next/image';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const page = () => {
+const Page = () => {
 
 const[image,setImage] = useState(false);
 const [data, setData] = useState({
@@ -110,4 +110,4 @@ const onSubmitHandler = async(e)=>{
   )
 }
 
-export default page
+export default Page

@@ -3,8 +3,10 @@ import SubsTableItem from '@/Components/AdminComponents/SubsTableItem'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const page = () => {
+
+const Page = () => {
 
   const [emails,setEmails] =  useState ([]);
 
@@ -19,12 +21,15 @@ const page = () => {
         id:mongoId
       }
     })
+    console.log('API Response:', response.data);
+    
     if (response.data.success) {
       toast.success(response.data.msg);
       fetchEmails();
     }
     else{
-      toast.error("Error");
+      toast.success(response.data.msg);
+      fetchEmails();
     }
   }
 
@@ -62,4 +67,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
