@@ -73,12 +73,12 @@ Open the app in your browser at ``` http://localhost:3000.```
 
 ----
 
-##💡 Usage
+## 💡 Usage
 
-###Running the Frontend
+### Running the Frontend
 The frontend is built with Next.js and styled using Tailwind CSS for a responsive and clean design.
 
-###Admin Panel
+### Admin Panel
 Admins can:
 
 Add new blog posts.
@@ -89,7 +89,8 @@ The app uses Next.js API routes to:
 Fetch blog data from MongoDB.
 Handle create, update, and delete requests.
 
-##📂 Folder Structure
+## 📂 Folder Structure
+```
 blog-app/  
 ├── components/       # Reusable UI components  
 ├── pages/            # Next.js pages (Frontend & API routes)  
@@ -98,7 +99,7 @@ blog-app/
 ├── utils/            # Helper functions and database connection  
 ├── .env.local        # Environment variables (add this file to .gitignore)  
 
-
+```
 
 
 
