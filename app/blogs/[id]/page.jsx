@@ -8,10 +8,10 @@ import Link from "next/link";
 import React, { useEffect, useState, use } from "react";
 
 const Page = ({ params }) => {
-  const resolvedParams = use(params); // Resolve the params promise
-  const { id } = resolvedParams; // Destructure the id from resolvedParams
+  const resolvedParams = use(params); 
+  const { id } = resolvedParams; 
   const [data, setData] = useState(null);
-  const [error, setError] = useState(null); // Track errors
+  const [error, setError] = useState(null); 
 
   const fetchBlogData = async () => {
     try {
@@ -90,7 +90,7 @@ const Page = ({ params }) => {
           ></div>
           <div className="mt-24">
             <p className="text-black font-semibold my-4">
-              Share this article on social media
+              Share This Article In Your Social Media
             </p>
             <div className="flex">
               <Image src={assets.facebook_icon} width={50} alt="facebook" />
