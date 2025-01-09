@@ -1,39 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📰 Blog App - Full Stack Website  
 
-## Getting Started
+Welcome to the **Blog App** project! This is a full-stack application built using **Next.js**, **MongoDB**, and **Tailwind CSS**. The project includes a user-friendly frontend, a robust backend, and an admin panel for managing blog posts.
 
-First, run the development server:
+---
 
+## 📋 Table of Contents  
+1. [Introduction](#-introduction)  
+2. [Features](#-features)  
+3. [Technologies Used](#-technologies-used)  
+4. [Installation](#-installation)  
+5. [Usage](#-usage)  
+6. [Folder Structure](#-folder-structure)  
+7. [Contributing](#-contributing)  
+8. [License](#-license)  
+
+---
+
+## 🌟 Introduction  
+The Blog App project is a full-stack web application that allows users to view blog posts, while providing an admin dashboard to create, edit, and delete posts. It is designed to be efficient, responsive, and scalable using modern web technologies.
+
+---
+
+## 🚀 Features  
+- **Frontend**: Display blog posts fetched from a **MongoDB database**.  
+- **Admin Panel**: Create, edit, and delete blog posts.  
+- **Backend APIs**: Handle CRUD operations efficiently.  
+- **Responsive Design**: Built with **Tailwind CSS** for seamless user experience on all devices.  
+- **Notifications**: Integrated with **React Toastify** for status alerts.  
+
+---
+
+## 🛠 Technologies Used  
+- **Frontend**: Next.js, Tailwind CSS  
+- **Backend**: Next.js API Routes, MongoDB  
+- **Database**: MongoDB  
+- **Others**: React Toastify for notifications  
+
+---
+
+## 🖥 Installation  
+
+### Prerequisites  
+Ensure you have the following installed:  
+- [Node.js](https://nodejs.org/)  
+- [MongoDB](https://www.mongodb.com/)  
+
+### Steps  
+1. Clone the repository:  
+   ```bash  
+   git clone https://github.com/KethakaWanasinghe/blog-app.git  
+   cd blog-app ```
+  
+## 🖥 Installation  
+
+### Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install  
 ```
+###Set up your environment variables in a .env.local file:
+```
+MONGO_URI=your-mongo-connection-string  
+JWT_SECRET=your-secret-key  
+```
+###Start the development server:
+```
+npm run dev  
+```
+###Access the App
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open the app in your browser at ``` http://localhost:3000.```
 
 
-## Kethaka Wanasingha
+----
+
+##💡 Usage
+
+###Running the Frontend
+The frontend is built with Next.js and styled using Tailwind CSS for a responsive and clean design.
+
+###Admin Panel
+Admins can:
+
+Add new blog posts.
+Update or delete existing posts.
+API Integration
+The app uses Next.js API routes to:
+
+Fetch blog data from MongoDB.
+Handle create, update, and delete requests.
+
+##📂 Folder Structure
+blog-app/  
+├── components/       # Reusable UI components  
+├── pages/            # Next.js pages (Frontend & API routes)  
+├── public/           # Static assets  
+├── styles/           # Tailwind CSS files  
+├── utils/            # Helper functions and database connection  
+├── .env.local        # Environment variables (add this file to .gitignore)  
+
+
+
+
+
+
+
